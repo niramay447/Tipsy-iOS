@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
 
    
     @IBOutlet weak var billTextField: UITextField!
@@ -10,11 +10,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var splitNumberLabel: UILabel!
     @IBOutlet weak var tenPcButton: UIButton!
     @IBOutlet weak var zeroPctbutton: UIButton!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+
+    @IBAction func tipChanged(_ sender: Any) {
     }
-
-
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+    }
+    @IBAction func calculatePressed(_ sender: UIButton) {
+    }
+    
 }
 
