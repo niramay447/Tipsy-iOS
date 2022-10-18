@@ -2,18 +2,19 @@
 import UIKit
 
 class CalculatorViewController: UIViewController {
-
-   
+    
+    
     @IBOutlet weak var billTextField: UITextField!
     
     @IBOutlet weak var twentyPctButton: UIButton!
     @IBOutlet weak var splitNumberLabel: UILabel!
     @IBOutlet weak var tenPcButton: UIButton!
     @IBOutlet weak var zeroPctbutton: UIButton!
-
+    
     var tip = 0.10
     var people = 2
     var billTotal = 0.0
+    var perPerson = "0.0"
     
     @IBAction func tipChanged(_ sender: UIButton) {
         billTextField.endEditing(true)
@@ -38,11 +39,18 @@ class CalculatorViewController: UIViewController {
         if bill != "" {
             billTotal = Double(bill)!
             
-            let perPerson = (billTotal*(1+tip))/Double(people)
-            
-            print(perPerson)
+            perPerson = String(format:"%.2f",billTotal*(1+tip)/Double(people))
+            self.performSegue(withIdentifier: "goToResult", sender: self)
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult"{
+            let destinationVC = segue.destination as! ResultsViewController
+            
+            destinationVC.perPerson = perPerson
+            destinationVC.tip = Int(tip*100)
+            destinationVC.split = people
+        }
+        
+    }
 }
-
